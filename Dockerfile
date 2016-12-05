@@ -1,2 +1,2 @@
-chmod -x ./dockerup.bat
-./dockerup
+RUN chmod -x ./dockerup.bat
+RUN ./dockerup
