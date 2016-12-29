@@ -42,6 +42,7 @@ router.route('/subjects')
         subject: subject 
       });
     })
+  })
 
   .get((req, res) => {
     Subject.find((err, subjects) => {
@@ -49,7 +50,6 @@ router.route('/subjects')
       res.json(subjects);
     });
   });
-
 
 app.listen(port);
 console.log('Listening on port ' + port);
