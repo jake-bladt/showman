@@ -38,7 +38,7 @@ router.route('/subjects')
     subject.save((err) => {
       if(err) res.send(err);
       res.json({ 
-        message: subject.display_name + ' created',
+        message: subject.display_name + ' created.',
         subject: subject 
       });
     })
@@ -56,6 +56,24 @@ router.route('/subjects/:subject_id')
     Subject.findById(req.params.subject_id, (err, subject) => {
       if(err) res.send(err);
       res.json(subject);
+    });
+  })
+
+  .put((req, res) => {
+    Subject.findById(req.params.subject_id, (err, subject) => {
+      if(err) res.send(err);
+
+      subject.name = req.body.name;
+      subject.display_name = req.body.displayName;
+      subject.image_count = req.body.imageCount;
+
+      subject.save((err) => {
+        if(err) res.send(err);
+        res.json({
+            message: subject.display_name + " updated.",
+            subject: subject
+        });
+      });      
     });
   });
 
