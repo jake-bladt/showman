@@ -7,12 +7,20 @@ const router = express.Router();
 const port = process.env.PORT || 8088;
 const dburl = process.env.DBURL || secrets.DBUrl;
 
+const Subject = require('./models/subject');
+
 const mongoose = require('mongoose');
 mongoose.connect(dburl);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api', router);
+
+// middleware
+router.use((req, res, next) => {
+  conole.log('request', req);
+  next();
+});
 
 router.get('/', function(req, res) {
     res.json({ message: 'Service up and running.' });   
