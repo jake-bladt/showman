@@ -44,12 +44,10 @@ router.route('/subjects')
     })
 
   .get((req, res) => {
-    Subject.find((err, subjects)
+    Subject.find((err, subjects) => {
       if(err) res.send(err);
       res.json(subjects);
-    );
-  });
-
+    });
   });
 
 
