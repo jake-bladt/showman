@@ -22,7 +22,7 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
     res.json({ message: 'Service up and running.' });   
 });
 
