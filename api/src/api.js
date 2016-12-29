@@ -37,7 +37,10 @@ router.route('/subjects')
 
     subject.save((err) => {
       if(err) res.send(err);
-      res.json({ message: subject.display_name + ' created'});
+      res.json({ 
+        message: subject.display_name + ' created',
+        subject: subject 
+      });
     });
 
   });
