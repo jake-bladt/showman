@@ -41,7 +41,14 @@ router.route('/subjects')
         message: subject.display_name + ' created',
         subject: subject 
       });
-    });
+    })
+
+  .get((req, res) => {
+    Subject.find((err, subjects)
+      if(err) res.send(err);
+      res.json(subjects);
+    );
+  });
 
   });
 
