@@ -51,5 +51,13 @@ router.route('/subjects')
     });
   });
 
+router.route('/subjects/:subject_id')
+  .get((req, res => {
+    Subject.findById(req.params.subject_id, (err, subject) {
+      if(err) res.send(err);
+      res.json(subject);
+    });
+  }));
+
 app.listen(port);
 console.log('Listening on port ' + port);
