@@ -18,7 +18,7 @@ app.use('/api', router);
 
 // middleware
 router.use((req, res, next) => {
-  conole.log('request', req);
+  console.log('request', req);
   next();
 });
 
