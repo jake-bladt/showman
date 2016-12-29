@@ -75,6 +75,21 @@ router.route('/subjects/:subject_id')
         });
       });      
     });
+  })
+
+  .delete((req, res) => {
+    Subject.findById(req.params.subject_id, (err, subject) => {
+      if(err) res.send(err);
+
+      subject.is_active = false;
+      subject.save((err) => {
+        if(err) res.send(err);
+        var message = subject.display_name + " marked inactive.";
+        res.json({ message });
+      });
+
+    });
+
   });
 
 app.listen(port);
