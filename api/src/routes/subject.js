@@ -1,6 +1,6 @@
 const Subject = require('../models/subject');
 
-module.exports = function(router) {
+module.exports = (router) => {
 
   router.route('/subjects')
     .post((req, res) => {
@@ -63,8 +63,6 @@ module.exports = function(router) {
           var message = subject.display_name + " marked inactive.";
           res.json({ message });
         });
-
       });
-
     });
 };
