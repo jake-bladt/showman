@@ -1,23 +1,29 @@
 const Subject = require('../models/subject');
 
-module.exports = function(router) {
+module.exports = (router) => {
 
   router.route('/subjects')
-    .post((req, res) => {
-      var subject = new Subject();
-      subject.name = req.body.name;
-      subject.display_name = req.body.displayName;
-      subject.image_count = req.body.imageCount;
-      subject.is_active = true;
-      subject.date_added = Date.now();
+    .post((req, res, next) => {
 
-      subject.save((err) => {
-        if(err) res.send(err);
-        res.json({ 
-          message: subject.display_name + ' created.',
-          subject: subject 
+      Subject.findOne({ name: req.body.name }, '_id', (error, existing) => {
+        if(error)    res.status(500).send({ error });
+        if(existing) res.status(406).send(`A subject named ${req.body.displayName} with id ${existing['_id']} already exists.`);
+
+        var subject = new Subject();
+        subject.name = req.body.name;
+        subject.display_name = req.body.displayName;
+        subject.image_count = req.body.imageCount;
+        subject.is_active = true;
+        subject.date_added = Date.now();
+
+        subject.save((err) => {
+          if(err) res.send(err);
+          res.json({ 
+            message: subject.display_name + ' created.',
+            subject: subject 
+          });
         });
-      })
+      });
     })
 
     .get((req, res) => {
@@ -63,8 +69,6 @@ module.exports = function(router) {
           var message = subject.display_name + " marked inactive.";
           res.json({ message });
         });
-
       });
-
     });
 };
