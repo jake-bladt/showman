@@ -3,7 +3,19 @@ const Subject = require('../models/subject');
 module.exports = (router) => {
 
   router.route('/subjects')
-    .post((req, res) => {
+    .post((req, res, next) => {
+
+      var existingId = false;
+      var findErr = false;
+
+      Subject.findOne({ name: req.body.name }, 'id', (err, existing) => {
+        findErr    = err || false;
+        existingId = existing.id || false;
+      });
+
+      if(findErr) return next(findErr);
+      if(existingId) res.status(406).send(`A subject named ${req.body.name} with id ${existingId} already exists.`);
+
       var subject = new Subject();
       subject.name = req.body.name;
       subject.display_name = req.body.displayName;
