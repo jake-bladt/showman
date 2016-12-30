@@ -57,21 +57,48 @@ module.exports = (router) => {
     })
 
     .put((req, res) => {
-      Subject.findById(req.params.subject_id, (err, subject) => {
-        if(err) res.send(err);
 
-        subject.name = req.body.name;
-        subject.display_name = req.body.displayName;
-        subject.image_count = req.body.imageCount;
+      var subjectOID = false;
+      if(ObjectId.isValid(req.params.identifier)) subjectOID = new ObjectId(req.params.identifier);
 
-        subject.save((err) => {
+      if(subjectOID == req.params.identifier) {
+        Subject.findById(req.params.identifier, (err, subject) => {
           if(err) res.send(err);
-          res.json({
-              message: subject.display_name + " updated.",
-              subject: subject
-          });
-        });      
-      });
+          if(subject) {
+            subject.name = req.body.name;
+            subject.display_name = req.body.displayName;
+            subject.image_count = req.body.imageCount;
+
+            subject.save((err) => {
+              if(err) res.send(err);
+              res.json({
+                  message: subject.display_name + " updated.",
+                  subject: subject
+              });
+            });      
+          }
+        });
+        res.status(404).send(`No subject found with id ${req.params.identifier}.`);
+      } else {
+        Subject.findOne({ name: req.params.identifier }, (err, subject) => {
+          if(err) res.send(err);
+          if(subject) {
+            subject.name = req.body.name;
+            subject.display_name = req.body.displayName;
+            subject.image_count = req.body.imageCount;
+
+            subject.save((err) => {
+              if(err) res.send(err);
+              res.json({
+                  message: subject.display_name + " updated.",
+                  subject: subject
+              });
+            });      
+          }
+        });
+        res.status(404).send(`No subject found with the name ${req.params.identifier}.`);
+      }
+
     })
 
     .delete((req, res) => {
