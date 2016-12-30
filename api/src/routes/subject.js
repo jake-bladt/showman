@@ -10,7 +10,7 @@ module.exports = (router) => {
 
       Subject.findOne({ name: req.body.name }, 'id', (err, existing) => {
         findErr    = err || false;
-        existingId = existing.id || false;
+        if(existing) existingId = existing.id || false;
       });
 
       if(findErr) return next(findErr);
