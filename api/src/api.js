@@ -7,8 +7,6 @@ const router = express.Router();
 const port = process.env.PORT || 8088;
 const dburl = process.env.DBURL || secrets.DBUrl;
 
-const Subject = require('./models/subject');
-
 const mongoose = require('mongoose');
 mongoose.connect(dburl);
 

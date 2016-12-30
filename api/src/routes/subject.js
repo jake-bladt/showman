@@ -1,3 +1,5 @@
+const Subject = require('./models/subject');
+
 module.exports = function(router) {
 
   router.route('/subjects')
