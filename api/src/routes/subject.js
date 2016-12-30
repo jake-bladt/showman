@@ -1,9 +1,10 @@
 const Subject = require('../models/subject');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 module.exports = (router) => {
 
   router.route('/subjects')
-    .post((req, res, next) => {
+    .post((req, res) => {
 
       Subject.findOne({ name: req.body.name }, '_id', (error, existing) => {
         if(error)    res.status(500).send({ error });
@@ -35,11 +36,22 @@ module.exports = (router) => {
 
   router.route('/subjects/:subject_id')
     .get((req, res) => {
-      Subject.findById(req.params.subject_id, (err, subject) => {
-        if(err) res.send(err);
-        if(subject) res.json(subject);
-        res.status(404).send(`No subject found with id ${req.params.subject_id}.`);
-      });
+
+      const subjectOID = new ObjectId(req.params.subject_id);
+      if(subjectOID == req.params.subject_id) {
+        Subject.findById(subjectOID, (err, subject) => {
+          if(err) res.send(err);
+          if(subject) res.json(subject);
+          res.status(404).send(`No subject found with id ${req.params.subject_id}.`);
+        });
+      } else {
+        Subject.findOne({ name: req.params.name }, (err, subject) => {
+          if(err) res.send(err);
+          if(subject) res.json(subject);
+          res.status(404).send(`No subject found with the name ${req.params.name}.`);
+        });
+      }
+
     })
 
     .put((req, res) => {
