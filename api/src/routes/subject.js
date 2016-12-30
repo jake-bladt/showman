@@ -8,10 +8,10 @@ module.exports = (router) => {
       var existingId = 0;
       var findErr = false;
 
-      Subject.findOne({ name: req.body.name }, 'id', (err, existing) => {
+      Subject.findOne({ name: req.body.name }, '_id', (err, existing) => {
         console.log("Existing subject: ", existing);
         findErr    = err || false;
-        if(existing) existingId = existing.id || false;
+        if(existing) existingId = existing["_id"] || false;
       });
 
       console.log('error:', findErr);
