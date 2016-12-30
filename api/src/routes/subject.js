@@ -38,7 +38,7 @@ module.exports = (router) => {
       Subject.findById(req.params.subject_id, (err, subject) => {
         if(err) res.send(err);
         if(subject) res.json(subject);
-        res.status(404).send(`No subject found with id ${res.params.subject_id}.`);
+        res.status(404).send(`No subject found with id ${req.params.subject_id}.`);
       });
     })
 
