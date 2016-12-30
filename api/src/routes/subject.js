@@ -5,10 +5,11 @@ module.exports = (router) => {
   router.route('/subjects')
     .post((req, res, next) => {
 
-      var existingId = false;
+      var existingId = 0;
       var findErr = false;
 
       Subject.findOne({ name: req.body.name }, 'id', (err, existing) => {
+        console.log("Existing subject: ", existing);
         findErr    = err || false;
         if(existing) existingId = existing.id || false;
       });
