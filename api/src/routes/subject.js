@@ -77,8 +77,8 @@ module.exports = (router) => {
               });
             });      
           }
+          res.status(404).send(`No subject found with id ${req.params.identifier}.`);
         });
-        res.status(404).send(`No subject found with id ${req.params.identifier}.`);
       } else {
         Subject.findOne({ name: req.params.identifier }, (err, subject) => {
           if(err) res.send(err);
@@ -95,8 +95,8 @@ module.exports = (router) => {
               });
             });      
           }
+          res.status(404).send(`No subject found with the name ${req.params.identifier}.`);
         });
-        res.status(404).send(`No subject found with the name ${req.params.identifier}.`);
       }
 
     })
