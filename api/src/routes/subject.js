@@ -38,7 +38,7 @@ module.exports = (router) => {
     .get((req, res) => {
 
       var subjectOID = false;
-      if(ObjectId.IsValid(req.params.subject_id)) subjectOID = new ObjectId(req.params.subject_id);
+      if(ObjectId.isValid(req.params.subject_id)) subjectOID = new ObjectId(req.params.subject_id);
 
       if(subjectOID == req.params.subject_id) {
         Subject.findById(subjectOID, (err, subject) => {
