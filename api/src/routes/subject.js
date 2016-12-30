@@ -5,35 +5,25 @@ module.exports = (router) => {
   router.route('/subjects')
     .post((req, res, next) => {
 
-      var existingId = 0;
-      var findErr = false;
-
       Subject.findOne({ name: req.body.name }, '_id', (err, existing) => {
-        console.log("Existing subject: ", existing);
-        findErr    = err || false;
-        if(existing) existingId = existing["_id"] || false;
-      });
+        if(findErr) return next(findErr);
+        if(existingId) res.status(406).send(`A subject named ${req.body.name} with id ${existingId} already exists.`);
 
-      console.log('error:', findErr);
-      console.log('id:', existingId);
+        var subject = new Subject();
+        subject.name = req.body.name;
+        subject.display_name = req.body.displayName;
+        subject.image_count = req.body.imageCount;
+        subject.is_active = true;
+        subject.date_added = Date.now();
 
-      if(findErr) return next(findErr);
-      if(existingId) res.status(406).send(`A subject named ${req.body.name} with id ${existingId} already exists.`);
-
-      var subject = new Subject();
-      subject.name = req.body.name;
-      subject.display_name = req.body.displayName;
-      subject.image_count = req.body.imageCount;
-      subject.is_active = true;
-      subject.date_added = Date.now();
-
-      subject.save((err) => {
-        if(err) res.send(err);
-        res.json({ 
-          message: subject.display_name + ' created.',
-          subject: subject 
+        subject.save((err) => {
+          if(err) res.send(err);
+          res.json({ 
+            message: subject.display_name + ' created.',
+            subject: subject 
+          });
         });
-      })
+      });
     })
 
     .get((req, res) => {
