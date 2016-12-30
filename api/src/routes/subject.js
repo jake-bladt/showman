@@ -34,23 +34,23 @@ module.exports = (router) => {
       });
     });
 
-  router.route('/subjects/:subject_id')
+  router.route('/subjects/:identifier')
     .get((req, res) => {
 
       var subjectOID = false;
-      if(ObjectId.isValid(req.params.subject_id)) subjectOID = new ObjectId(req.params.subject_id);
+      if(ObjectId.isValid(req.params.identifier)) subjectOID = new ObjectId(req.params.identifier);
 
-      if(subjectOID == req.params.subject_id) {
+      if(subjectOID == req.params.identifier) {
         Subject.findById(subjectOID, (err, subject) => {
           if(err) res.send(err);
           if(subject) res.json(subject);
-          res.status(404).send(`No subject found with id ${req.params.subject_id}.`);
+          res.status(404).send(`No subject found with id ${req.params.identifier}.`);
         });
       } else {
-        Subject.findOne({ name: req.params.name }, (err, subject) => {
+        Subject.findOne({ name: req.params.identifier }, (err, subject) => {
           if(err) res.send(err);
           if(subject) res.json(subject);
-          res.status(404).send(`No subject found with the name ${req.params.name}.`);
+          res.status(404).send(`No subject found with the name ${req.params.identifier}.`);
         });
       }
 
