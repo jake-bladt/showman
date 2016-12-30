@@ -13,6 +13,9 @@ module.exports = (router) => {
         if(existing) existingId = existing.id || false;
       });
 
+      console.log('error:', findErr);
+      console.log('id:', existingId);
+
       if(findErr) return next(findErr);
       if(existingId) res.status(406).send(`A subject named ${req.body.name} with id ${existingId} already exists.`);
 
