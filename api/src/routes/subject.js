@@ -5,9 +5,9 @@ module.exports = (router) => {
   router.route('/subjects')
     .post((req, res, next) => {
 
-      Subject.findOne({ name: req.body.name }, '_id', (err, existing) => {
-        if(findErr) return next(findErr);
-        if(existingId) res.status(406).send(`A subject named ${req.body.name} with id ${existingId} already exists.`);
+      Subject.findOne({ name: req.body.name }, '_id', (error, existing) => {
+        if(error)    res.status(500).send({ error });
+        if(existing) res.status(406).send(`A subject named ${req.body.name} with id ${existing['_id']} already exists.`);
 
         var subject = new Subject();
         subject.name = req.body.name;
