@@ -65,5 +65,4 @@ module.exports = function(router) {
       });
 
     });
-  
 };
