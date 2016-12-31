@@ -11,7 +11,8 @@ const subjectSchema = new Schema({
 
 var model = mongoose.model('Subject', subjectSchema);
 model.displayNameFromName = (displayName) => {
-
+  let workingString = displayName.replace('.', ' ');
+  let outString = workingString.substring(0, 1);
 };
 
 module.exports = model;
