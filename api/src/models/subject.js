@@ -9,6 +9,9 @@ const subjectSchema = new Schema({
   date_added:   Date
 });
 
+var model = mongoose.model('Subject', subjectSchema);
+model.displayNameFromName = (displayName) => {
 
+};
 
-module.exports = mongoose.model('Subject', subjectSchema);
+module.exports = model;
