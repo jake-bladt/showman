@@ -2,9 +2,10 @@
   "name": "showman-api",
   "main": "src/api.js",
   "dependencies": {
+    "body-parser": "~1.0.1",
     "express": "~4.0.0",
     "mongoose": "~4.7.5",
-    "body-parser": "~1.0.1"
+    "should": "^11.1.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
