@@ -12,7 +12,7 @@ module.exports = (router) => {
 
         var subject = new Subject();
         subject.name = req.body.name;
-        subject.display_name = req.body.displayName;
+        subject.display_name = req.body.displayName || Subject.displayNameFromName(req.body.name);
         subject.image_count = req.body.imageCount;
         subject.is_active = true;
         subject.date_added = Date.now();
