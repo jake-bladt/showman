@@ -14,8 +14,8 @@ model.displayNameFromName = (displayName) => {
   var workingString = displayName.replace('.', ' ');
   var outString = workingString.substring(0, 1).toUpperCase();
   var prevChar = '';
-  for(var i = 1; i < displayName.length; i++) {
-    var thisChar = displayName.substring(i, i + 1);
+  for(var i = 1; i < workingString.length; i++) {
+    var thisChar = workingString.substring(i, i + 1);
     if(prevChar === ' ' || prevChar === '-') thisChar = thisChar.toUpperCase();
     outString += thisChar;
     prevChar = thisChar;
