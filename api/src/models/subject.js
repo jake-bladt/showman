@@ -11,11 +11,11 @@ const subjectSchema = new Schema({
 
 var model = mongoose.model('Subject', subjectSchema);
 model.displayNameFromName = (displayName) => {
-  let workingString = displayName.replace('.', ' ');
-  let outString = workingString.substring(0, 1).toUpperCase();
-  let prevChar = '';
-  for(let i = 1; i < displayName.length; i++) {
-    let thisChar = displayName.substring(i, i + 1);
+  var workingString = displayName.replace('.', ' ');
+  var outString = workingString.substring(0, 1).toUpperCase();
+  var prevChar = '';
+  for(var i = 1; i < displayName.length; i++) {
+    var thisChar = displayName.substring(i, i + 1);
     if(prevChar === ' ' || prevChar === '-') thisChar = thisChar.toUpperCase();
     outString += prevChar;
     prevChar = thisChar;
