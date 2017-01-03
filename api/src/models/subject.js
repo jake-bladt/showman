@@ -1,7 +1,7 @@
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+const mongoose     = require('mongoose');
+const Schema       = mongoose.Schema;
 
-var subjectSchema = new Schema({
+const subjectSchema = new Schema({
   name:         String,
   display_name: String,
   image_count:  Number,
@@ -9,4 +9,18 @@ var subjectSchema = new Schema({
   date_added:   Date
 });
 
-module.exports = mongoose.model('Subject', subjectSchema);
+var model = mongoose.model('Subject', subjectSchema);
+model.displayNameFromName = (displayName) => {
+  var workingString = displayName.replace('.', ' ');
+  var outString = workingString.substring(0, 1).toUpperCase();
+  var prevChar = '';
+  for(var i = 1; i < workingString.length; i++) {
+    var thisChar = workingString.substring(i, i + 1);
+    if(prevChar === ' ' || prevChar === '-') thisChar = thisChar.toUpperCase();
+    outString += thisChar;
+    prevChar = thisChar;
+  }
+  return outString;
+};
+
+module.exports = model;

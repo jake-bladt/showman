@@ -1,9 +1,16 @@
 {
-    "name": "showman-api",
-    "main": "src/api.js",
-    "dependencies": {
-        "express": "~4.0.0",
-        "mongoose": "~4.7.5",
-        "body-parser": "~1.0.1"
-    }
+  "name": "showman-api",
+  "main": "src/api.js",
+  "dependencies": {
+    "body-parser": "~1.0.1",
+    "express": "~4.0.0",
+    "mongoose": "~4.7.5",
+    "should": "^11.1.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^3.0.1",
+    "mocha": "^3.2.0"
+  }
 }
