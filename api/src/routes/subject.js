@@ -67,9 +67,9 @@ module.exports = (router) => {
         Subject.findById(req.params.identifier, (err, subject) => {
           if(err) res.send(err);
           if(subject) {
-            subject.name = req.body.name;
-            subject.display_name = req.body.displayName;
-            subject.image_count = req.body.imageCount;
+            if(req.body.name) subject.name = req.body.name;
+            if(req.body.displayName) subject.display_name = req.body.displayName;
+            if(req.body.imageCount) subject.image_count = req.body.imageCount;
 
             subject.save((err) => {
               if(err) res.send(err);
