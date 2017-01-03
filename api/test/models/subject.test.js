@@ -1,4 +1,6 @@
-const should = require('chai').should();
+"use strict";
+
+const should = require('chai').should;
 const subjectModel = require('../../src/models/subject');
 
 describe('#displayNameFromName'), () => {
