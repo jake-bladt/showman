@@ -10,6 +10,10 @@ describe('#displayNameFromName', () => {
     subjectModel.displayNameFromName('jake.b').should.equal('Jake B');
   });
 
+  it('capitalizes a last name', () => {
+    subjectModel.displayNameFromName('jake.bladt').should.equal('Jake Bladt');
+  });
+
   it('capitalizes a hyphenated name', () => {
     subjectModel.displayNameFromName('joe-bob').should.equal('Joe-Bob');
   });
