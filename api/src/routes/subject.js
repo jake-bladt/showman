@@ -6,6 +6,8 @@ module.exports = (router) => {
   router.route('/subjects')
     .post((req, res) => {
 
+      if(!(req.body.name)) res.status(406).send(`A subject cannot be created without a name.`);
+
       Subject.findOne({ name: req.body.name }, '_id', (error, existing) => {
         if(error)    res.status(500).send({ error });
         if(existing) res.status(406).send(`A subject named ${req.body.name} with id ${existing['_id']} already exists.`);
