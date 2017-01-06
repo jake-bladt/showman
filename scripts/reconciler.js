@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-var subject = require('../models/subject'); 
+var subject = require('..api/src/models/subject'); // need to move this into util
 
 var imageLibraryReaderFactory = {
   getReader: (type, source) => {
