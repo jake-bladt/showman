@@ -26,11 +26,28 @@ var imageLibraryReaderFactory = {
         };
       }
     } else { 
-      throw 'unrecognized reader type: ' + type 
+      throw 'unrecognized reader type: ' + type; 
     }
 
     return ret;
   }
 };
 
-module.exports = { imageLibraryReaderFactory };
+var yearbookReaderFactory = {
+  getReader: (type, source) => {
+    let ret = { source };
+    if('fs' === type) {
+      ret.getSubjects = () => {
+        let subjectImages = fs.readdirSync(source);
+        let subjectNames = subjectImages.filter(sn => sn !== 'Thumbs.db').map(n => subject.nameFromFilename(n));
+        return { subjectNames };
+      };
+      return ret;      
+    } else {
+      throw 'unrecognized reader type: ' + type; 
+    }
+
+  }
+};
+
+module.exports = { imageLibraryReaderFactory, yearbookReaderFactory };
