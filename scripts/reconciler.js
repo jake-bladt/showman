@@ -39,7 +39,7 @@ var yearbookReaderFactory = {
     if('fs' === type) {
       ret.getSubjects = () => {
         let subjectImages = fs.readdirSync(source);
-        let subjectNames = subjectImages.filter(sn => sn !== 'Thumbs.db').map((n) => subject.nameFromFilename(n));
+        let subjectNames = subjectImages.filter(sn => sn !== 'Thumbs.db').map(n => subject.nameFromFilename(n));
         return { subjectNames };
       };
       return ret;      
