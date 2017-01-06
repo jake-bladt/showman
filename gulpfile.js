@@ -8,5 +8,5 @@ gulp.task('reconcile', () => {
   console.log('reconciling...');
   let reader = reconciler.imageLibraryReaderFactory.getReader('fs', path.join(secrets.galleryRoot, 'subjects'));
   let librarySubjects = reader.getSubjects();
-  console.log(librarySubjects.debugInfo);
+  console.log(librarySubjects.subjects);
 });

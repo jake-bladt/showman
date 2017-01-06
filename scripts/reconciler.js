@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-var subject = require('api/models/subject'); // really need to move this functionality into a utility class
+var subject = require('../models/subject'); 
 
 var imageLibraryReaderFactory = {
   getReader: (type, source) => {
@@ -16,7 +16,7 @@ var imageLibraryReaderFactory = {
           subjects[f] = { 
             imageCount: sfImages.length,
             name: f,
-            displayName:  
+            displayName:  subject.displayNameFromName(f)
           };
         });
 
