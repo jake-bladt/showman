@@ -22,7 +22,4 @@ gulp.task('reconcile', () => {
   let yearbookSubjectNames = ybReader.getSubjects().subjectNames;
   console.log(`${yearbookSubjectNames.length.toLocaleString()} subjects in the yearbook.`);
 
-  let missingYearbooks = Object.keys(librarySubjects).filter((s) => -1 === yearbookSubjectNames.indexOf(s));
-  console.log(missingYearbooks);
-
 });
