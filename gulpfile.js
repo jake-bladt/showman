@@ -9,5 +9,5 @@ gulp.task('reconcile', () => {
   console.log('reading from file system.');
   let reader = reconciler.imageLibraryReaderFactory.getReader('fs', path.join(secrets.galleryRoot, 'subjects'));
   let librarySubjects = reader.getSubjects();
-  console.log(`${librarySubjects.subjects.length.toLocaleString()} subjects in file system.`);
+  console.log(`${Object.keys(librarySubjects).length.toLocaleString()} subjects in file system.`);
 });
