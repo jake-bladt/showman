@@ -34,7 +34,11 @@ var imageLibraryReaderFactory = {
 };
 
 var yearbookReaderFactory = {
-  
+  getReader: (type, source) => {
+    let ret = { source };
+    let subjectImages = fs.readdirSync(source);
+    
+  }
 };
 
 module.exports = { imageLibraryReaderFactory, yearbookReaderFactory };
