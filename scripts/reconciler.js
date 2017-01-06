@@ -26,7 +26,7 @@ var imageLibraryReaderFactory = {
         };
       }
     } else { 
-      throw 'unrecognized reader type: ' + type 
+      throw 'unrecognized reader type: ' + type; 
     }
 
     return ret;
@@ -36,8 +36,14 @@ var imageLibraryReaderFactory = {
 var yearbookReaderFactory = {
   getReader: (type, source) => {
     let ret = { source };
-    let subjectImages = fs.readdirSync(source);
-    
+    if('fs' === source) {
+      let subjectImages = fs.readdirSync(source);
+      let subjectNames = subjectImages.map((n) => subject.nameFromFileName(n));
+      return { subjectName };
+    } else {
+      throw 'unrecognized reader type: ' + type; 
+    }
+
   }
 };
 
