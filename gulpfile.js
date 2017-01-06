@@ -1,12 +1,13 @@
-var gulp = require('gulp');
-var mocha = require('gulp-mocha');
+const gulp = require('gulp');
+const path = require('path');
 
-gulp.task('default', function() {
-  return gulp.src(['api/test/*.test.js'], { read: false })
-    .pipe(mocha({
-      reporter: 'spec',
-      globals: {
-        should: require('should')
-      }
-    }));
+const secrets = require('./secret');
+const reconciler = require('./scripts/reconciler')
+
+gulp.task('reconcile', () => {
+  console.log('reconciling...');
+  console.log('reading from file system.');
+  let reader = reconciler.imageLibraryReaderFactory.getReader('fs', path.join(secrets.galleryRoot, 'subjects'));
+  let librarySubjects = reader.getSubjects().subjects;
+  console.log(`${Object.keys(librarySubjects).length.toLocaleString()} subjects in file system.`);
 });
