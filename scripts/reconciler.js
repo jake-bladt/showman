@@ -1,4 +1,3 @@
-var secrets = require('./secret');
 var fs = require('fs');
 
 var imageLibraryReaderFactory = {
