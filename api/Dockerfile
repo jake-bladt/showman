@@ -1,8 +1,8 @@
 FROM node:boron
 MAINTAINER jake@jakebladt.com
 
-WORKDIR /relayserver
-COPY . /relayserver
-EXPOSE 5000:5000
+WORKDIR /api
+COPY . /api
+EXPOSE 8088:8088
 RUN npm install
-CMD ["node", "server.js"]
+CMD ["node", "src/api.js"]
