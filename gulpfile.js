@@ -18,6 +18,7 @@ gulp.task('reconcile', () => {
   console.log(`${Object.keys(librarySubjects).length.toLocaleString()} subjects in file system.`);
 
   console.log('reading from yearbook.');
+  let ybReader = reconciler.yearbookReaderFactory.getReader(settings.gallerySource, path.join(settings.galleryRoot, 'yearbook'));
 
 
 });
