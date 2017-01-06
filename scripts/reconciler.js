@@ -36,7 +36,7 @@ var imageLibraryReaderFactory = {
 var yearbookReaderFactory = {
   getReader: (type, source) => {
     let ret = { source };
-    if('fs' === source) {
+    if('fs' === type) {
       ret.getSubject = () => {
         let subjectImages = fs.readdirSync(source);
         let subjectNames = subjectImages.map((n) => subject.nameFromFileName(n));
