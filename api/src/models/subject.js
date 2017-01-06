@@ -10,6 +10,7 @@ const subjectSchema = new Schema({
 });
 
 var model = mongoose.model('Subject', subjectSchema);
+
 model.displayNameFromName = (displayName) => {
   var workingString = displayName.replace('.', ' ');
   var outString = workingString.substring(0, 1).toUpperCase();
@@ -22,5 +23,7 @@ model.displayNameFromName = (displayName) => {
   }
   return outString;
 };
+
+model.nameFromFilename = (fileName) => fileName.replace('.jpg', '');
 
 module.exports = model;
