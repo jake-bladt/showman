@@ -11,8 +11,13 @@ const settings = {
 
 gulp.task('reconcile', () => {
   console.log('reconciling...');
+
   console.log('reading from file system.');
-  let reader = reconciler.imageLibraryReaderFactory.getReader(settings.gallerySource, path.join(settings.galleryRoot, 'subjects'));
-  let librarySubjects = reader.getSubjects().subjects;
+  let fsReader = reconciler.imageLibraryReaderFactory.getReader(settings.gallerySource, path.join(settings.galleryRoot, 'subjects'));
+  let librarySubjects = fsReader.getSubjects().subjects;
   console.log(`${Object.keys(librarySubjects).length.toLocaleString()} subjects in file system.`);
+
+  console.log('reading from yearbook.');
+
+
 });
