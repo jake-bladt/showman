@@ -33,4 +33,8 @@ var imageLibraryReaderFactory = {
   }
 };
 
-module.exports = { imageLibraryReaderFactory };
+var yearbookReaderFactory = {
+  
+};
+
+module.exports = { imageLibraryReaderFactory, yearbookReaderFactory };
