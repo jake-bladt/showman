@@ -18,3 +18,14 @@ describe('#displayNameFromName', () => {
     subjectModel.displayNameFromName('joe-bob').should.equal('Joe-Bob');
   });
 });
+
+describe('#nameFromFilename', () => {
+  it('removes the jpg extension', () => {
+    subjectModel.nameFromFilename('jake.jpg').should.equal('jake');
+  });
+
+  it("doesn't change a name with no extension", () => {
+    subjectModel.nameFromFilename('jake.j').should.equal('jake.j');
+  });
+
+});
