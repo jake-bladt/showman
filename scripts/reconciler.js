@@ -39,7 +39,7 @@ var yearbookReaderFactory = {
     if('fs' === source) {
       let subjectImages = fs.readdirSync(source);
       let subjectNames = subjectImages.map((n) => subject.nameFromFileName(n));
-      return { subjectName };
+      return { subjectNames };
     } else {
       throw 'unrecognized reader type: ' + type; 
     }
