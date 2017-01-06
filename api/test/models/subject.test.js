@@ -24,7 +24,7 @@ describe('#nameFromFilename', () => {
     subjectModel.nameFromFilename('jake.jpg').should.equal('jake');
   });
 
-  it("doesn't change a name with no extension", () => {
+  it("doesn't change a name with no jpg extension", () => {
     subjectModel.nameFromFilename('jake.j').should.equal('jake.j');
   });
 
