@@ -1,2 +1,8 @@
-FROM nginex:1-11-6-alpine
-MAINTAINER Jake Bladt <jake@jakebladt.com>
+FROM node:boron
+MAINTAINER jake@jakebladt.com
+
+WORKDIR /api
+COPY . /api
+EXPOSE 8088:8088
+RUN ["npm", "install"]
+CMD ["node", "src/api.js"]
