@@ -39,7 +39,7 @@ var yearbookReaderFactory = {
     if('fs' === type) {
       ret.getSubjects = () => {
         let subjectImages = fs.readdirSync(source);
-        let subjectNames = subjectImages.map((n) => subject.nameFromFileName(n));
+        let subjectNames = subjectImages.map((n) => subject.nameFromFilename(n));
         return { subjectNames };
       };
       return ret;      
