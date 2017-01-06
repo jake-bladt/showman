@@ -4,5 +4,5 @@ MAINTAINER jake@jakebladt.com
 WORKDIR /api
 COPY . /api
 EXPOSE 8088:8088
-RUN npm install
+RUN ["npm", "install"]
 CMD ["node", "src/api.js"]
