@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const router = express.Router();
 
-const port = process.env.PORT || 5600;
+const port = process.env.PORT || 8088;
 const dburl = process.env.DBURL || secrets.DBUrl;
 
 const mongoose = require('mongoose');
