@@ -34,5 +34,4 @@ router.get('/', (req, res) => {
 const subjectRoutes = require('./routes/subject');
 subjectRoutes(router);
 
-app.listen(port);
-console.log('Listening on port ' + port);
+app.listen(port, () => console.log('Listening on port ' + port));
