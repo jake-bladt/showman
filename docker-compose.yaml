@@ -6,4 +6,4 @@ services:
       dockerfile: Dockerfile
     image: showman-api
     ports:
-      - "8088:8088"
+      - "5600:5600"
