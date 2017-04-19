@@ -7,3 +7,6 @@ services:
     image: showman-api
     ports:
       - "5600:5600"
+  webserver:
+    image: nginx
+    
