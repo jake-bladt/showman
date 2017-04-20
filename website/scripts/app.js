@@ -1,4 +1,5 @@
 let viewModel = {
+  title: 'Gallery Subjects',
   subjects: []
 }
 
