@@ -50,6 +50,21 @@ let yearbookReaderFactory = {
   }
 };
 
+let apiReaderFactory = {
+  getReader: (type, source) => {
+    let ret = { source };
+    if('json' === type) {
+      ret.getSubjects = () => {
+
+      };
+    } else {
+      throw 'unrecognized reader type: ' + type;  
+    }
+
+    return ret;
+  }
+};
+
 let reconcile = (set1, set2) => {
   return {
     set2missing: set1.elements.filter(x => !set2.elements.includes(x)),
@@ -57,4 +72,4 @@ let reconcile = (set1, set2) => {
   }
 };
 
-module.exports = { imageLibraryReaderFactory, yearbookReaderFactory, reconcile };
+module.exports = { apiReaderFactory, imageLibraryReaderFactory, yearbookReaderFactory, reconcile };
