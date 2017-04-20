@@ -23,9 +23,9 @@ gulp.task('reconcile', () => {
   console.log(`${yearbookSubjectNames.length.toLocaleString()} subjects in the yearbook.`);
 
   console.log('comparing');
-  let missing = reconciler.reconcile({ elements: librarySubjects.subjects.map(s => s.name)}, { elements: yearbookSubjectNames });
+  let missing = reconciler.reconcile({ elements: Object.keys(librarySubjects)}, { elements: yearbookSubjectNames });
 
-  console.log(`Missing from yearbook: ${missing.set1missing}`);
-  console.log(`Missing from file system: ${missing.set2missing}`);
+  console.log(`Missing from file system: ${missing.set1missing}`);
+  console.log(`Missing from yearbook: ${missing.set2missing}`);
 
 });
