@@ -1,8 +1,8 @@
-var fs = require('fs');
-var path = require('path');
-var subject = require('../api/src/models/subject'); // need to move this into util
+let fs = require('fs');
+let path = require('path');
+let subject = require('../api/src/models/subject'); // need to move this into util
 
-var imageLibraryReaderFactory = {
+let imageLibraryReaderFactory = {
   getReader: (type, source) => {
     let ret = { source };
 
@@ -33,7 +33,7 @@ var imageLibraryReaderFactory = {
   }
 };
 
-var yearbookReaderFactory = {
+let yearbookReaderFactory = {
   getReader: (type, source) => {
     let ret = { source };
     if('fs' === type) {
@@ -50,4 +50,11 @@ var yearbookReaderFactory = {
   }
 };
 
-module.exports = { imageLibraryReaderFactory, yearbookReaderFactory };
+let reconcile = (set1, set2) => {
+  return {
+    set2missing: set1.elements.filter(x => !set2.elements.includes(x)),
+    set1missing: set2.elements.filter(x => !set1.elements.includes(x))
+  }
+};
+
+module.exports = { imageLibraryReaderFactory, yearbookReaderFactory, reconcile };
